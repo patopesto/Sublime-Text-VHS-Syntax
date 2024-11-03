@@ -1,0 +1,5 @@
+syntax_test_* export-ignore
+LICENSE export-ignore
+.gitignore export-ignore
+*.sublime-project export-ignore
+*.sublime-workspace export-ignore
