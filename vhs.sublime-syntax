@@ -1,0 +1,102 @@
+%YAML 1.2
+---
+# Sublime syntax files documentation: http://www.sublimetext.com/docs/syntax.html
+
+name: VHS
+file_extensions:
+  - tape
+version: 2
+scope: source.tape
+
+variables:
+  identifier: \b[[:alpha:]_][[:alnum:]_]*\b # upper and lowercase
+
+  # number digits
+  dec_digit: '\d'
+  dec_digits: '{{dec_digit}}+'
+  # hex_digit: '\h'
+  # hex_color: '#{{hex_digit}}{6}'
+
+  time_keys: '(ms|m|s)'
+
+  instructions: '(Output|Require|Set|Sleep|Type|Hide|Show)'
+  keys: '(Escape|Backspace|Delete|Insert|Down|Enter|Space|Tab|Left|Right|Up|Down|PageUp|PageDown)'
+
+
+contexts:
+  prototype:
+    - include: comments
+  
+  main:
+    - include: instructions
+    - include: keys
+    - include: numbers
+    - include: strings
+
+
+  instructions:
+    - match: '{{instructions}}\b'
+      scope: keyword.tape
+
+  keys:
+    - match: '{{keys}}'
+      scope: keyword.tape
+      # push:
+        # - match: '@'
+        #   scope: variable.annotation.tape
+        #   push:
+        #     - include: numbers
+        #       pop: true
+        # - match: '\b'
+        #   pop: true
+
+  numbers:
+    - include: float
+    - include: decimal-integer
+
+  decimal-integer:
+    - match: '{{dec_digits}}'
+      scope: meta.number.integer.decimal.tape constant.numeric.integer.tape
+      push:
+        - match: '{{time_keys}}?'
+          scope: variable.annotation
+          pop: true
+
+  float:
+    - match: '{{dec_digits}}(\.){{dec_digits}}' #ex: 1.1
+      scope: meta.number.float.decimal.tape constant.numeric.float.tape
+      captures:
+        1: punctuation.separator.decimal.tape
+      push:
+        - match: '{{time_keys}}?'
+          scope: variable.annotation
+          pop: true
+
+  # color:
+  #   - match: '{{hex_color}}'
+  #     scope: meta.number.integer.hexadecimal constant.numeric.integer.hexadecimal
+
+  strings:
+    - match: \"
+      scope: punctuation.definition.string.begin.tape
+      push:
+        - meta_include_prototype: false
+        - meta_scope: meta.string.tape string.quoted.double.tape
+        - include: string-content
+        - match: \"
+          scope: punctuation.definition.string.end.tape
+          pop: true
+
+  comments:
+    # Comments begin with a '#' and finish at the end of the line
+    - match: '#'
+      scope: punctuation.definition.comment.tape
+      push:
+        - meta_scope: comment.line.tape
+        - include: line-ending
+
+  line-ending:
+    - match: $
+      pop: true
+
+
