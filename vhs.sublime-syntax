@@ -59,7 +59,7 @@ contexts:
       scope: meta.number.integer.decimal.tape constant.numeric.integer.tape
       push:
         - match: '{{time_keys}}?'
-          scope: variable.annotation
+          scope: variable.annotation.tape
           pop: true
 
   float:
@@ -69,7 +69,7 @@ contexts:
         1: punctuation.separator.decimal.tape
       push:
         - match: '{{time_keys}}?'
-          scope: variable.annotation
+          scope: variable.annotation.tape
           pop: true
 
   # color:

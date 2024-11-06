@@ -23,11 +23,9 @@ Type "go build ."
 
 Down@0.5ms 5
 # <- keyword.tape
-#   ^ variable.annotation.tape
 #    ^ constant.numeric.float.tape
-#       ^ variable.annotation
+#       ^ variable.annotation.tape
 #          ^ constant.numeric.integer.tape
-
 
 
 
