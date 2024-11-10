@@ -10,7 +10,9 @@ Once installed, the `VHS` syntax will be available in the list of syntaxes.
 
 ## Installation
 
-This package is not in Package Control yet and needs to be installed manually.
+### Using Package Control
+
+If you have [Package Control](https://packagecontrol.io/installation) installed: `Command Palette` → `Install Package` → `VHS`
 
 ### Manually
 
