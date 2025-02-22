@@ -19,8 +19,8 @@ variables:
 
   time_keys: '(ms|m|s)'
 
-  instructions: '(Output|Require|Set|Sleep|Type|Hide|Show)'
-  keys: '(Escape|Backspace|Delete|Insert|Down|Enter|Space|Tab|Left|Right|Up|Down|PageUp|PageDown)'
+  instructions: '(Output|Require|Set|Sleep|Type|Ctrl|Hide|Show|Wait|Alt|Source|Screenshot|Copy|Paste)'
+  keys: '(Backspace|Delete|Insert|Down|Enter|Left|Right|Tab|Up|PageUp|PageDown|Space)'
 
 
 contexts:
